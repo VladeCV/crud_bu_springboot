@@ -1,9 +1,11 @@
 package com.example.core_bu.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -23,12 +25,13 @@ public class Account {
 
     private BigDecimal balance;
 
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
 
     private String branch;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    @JsonIgnore
     private Client client;
 
 }

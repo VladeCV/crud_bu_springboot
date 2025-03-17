@@ -35,4 +35,11 @@ public class AccountService {
         accountRepository.deleteById(id);
     }
 
+    public Account updateAccount(Long id, Account account) {
+        Account accountToUpdate = accountRepository.findById(id).orElseThrow();
+        accountToUpdate.setBalance(account.getBalance());
+        accountToUpdate.setCurrency(account.getCurrency());
+        accountToUpdate.setProductType(account.getProductType());
+        return accountRepository.save(accountToUpdate);
+    }
 }
