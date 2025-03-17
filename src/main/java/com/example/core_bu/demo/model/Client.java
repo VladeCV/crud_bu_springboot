@@ -25,6 +25,6 @@ public class Client {
     private LocalDate birthDate;
     private String gender;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Account> accounts = new ArrayList<>();
 }
